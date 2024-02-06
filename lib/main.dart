@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:to_do_app/model/todo.dart';
 import 'package:to_do_app/pages/add_screen.dart';
-import 'pages/home_screen.dart';
+import 'package:to_do_app/pages/home_screen.dart';
 
 final routeObserver = RouteObserver<ModalRoute>();
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(TodoAdapter());
   runApp(const MyApp());
@@ -25,9 +24,7 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case '/home':
-            return MaterialPageRoute(
-              builder: (_) => const HomeScreen(),
-            );
+            return MaterialPageRoute(builder: (_) => const HomeScreen());
           case '/add':
             final index = settings.arguments as int?;
             return MaterialPageRoute(

@@ -6,7 +6,7 @@ class HiveDatabase {
 
   Future<void> addTodo(Todo todo) async {
     final box = await Hive.openBox<Todo>(boxName);
-    box.add(todo);
+    await box.add(todo);
   }
 
   Future<List<Todo>> getTodos() async {
@@ -35,4 +35,3 @@ class HiveDatabase {
     await box.put(index, todo);
   }
 }
-

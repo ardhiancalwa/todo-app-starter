@@ -6,20 +6,23 @@ class ItemTodo extends StatelessWidget {
   final Function(bool?) onCheck;
   final Function() onEdit;
   final Function() onDelete;
+
   const ItemTodo({
-    super.key,
     required this.todo,
     required this.onCheck,
     required this.onEdit,
     required this.onDelete,
+    super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    print("Todo Title: ${todo.title}, isDone: ${todo.isDone}");
     return Card(
+      color: Colors.green[300],
       child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
         leading: Checkbox(
+          activeColor: Colors.green[800],
           value: todo.isDone,
           onChanged: (value) => onCheck(value),
         ),
@@ -38,17 +41,16 @@ class ItemTodo extends StatelessWidget {
           ),
         ),
         trailing: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             GestureDetector(
               onTap: onEdit,
-              child: Icon(Icons.edit),
+              child: const Icon(Icons.edit_rounded),
             ),
+            const SizedBox(width: 8.0),
             GestureDetector(
               onTap: onDelete,
-              child: Icon(
-                Icons.delete,
-                color: Colors.red,
-              ),
+              child: const Icon(Icons.delete_rounded, color: Colors.red),
             ),
           ],
         ),
